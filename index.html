@@ -447,7 +447,6 @@
 	let forNation = document.getElementById('for-nationality');
     
     function openEditPage() {
-    	document.body.style.overflow='hidden';
         document.querySelector('.popup-menu').style.display='grid';
         forFio.value = fio.innerText;
         forFioLat.value = nameLatin.innerText;
@@ -467,11 +466,9 @@
             gender.innerText = forGender.value;
             pob.innerText = forPob.value;
             nationality.innerText = forNation.value;
-            document.body.style.overflow='';
         	document.querySelector('.popup-menu').style.display='none';
         } else {
         	alert('Действия успешно отменено');
-            document.body.style.overflow='';
         }
     };
     
@@ -505,7 +502,6 @@
     
     function editAddress(e) {
     	document.querySelector('.popup-address').style.display='grid';
-        document.body.style.overflow='hidden';
     	type_address = e.children[0];
         since = e.children[1];
         till = e.children[2];
@@ -530,18 +526,15 @@
 			address.innerText = for_address.value;
 			role.innerText = for_role.value;
 			createdby.innerText = for_createdby.value;
-            document.body.style.overflow='';
         	document.querySelector('.popup-address').style.display='none';
         } else {
         	alert('Действия успешно отменено');
 			document.querySelector('.popup-address').style.display='none';
-            document.body.style.overflow='';
         }
     };
     
     function closeWindow(e) {
     	e.parentElement.parentElement.parentElement.style.display = 'none';
-        document.body.style.overflow='auto';
     }
     
     function changePassport(e) {
