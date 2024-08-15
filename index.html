@@ -585,18 +585,21 @@
     }
     
     function deleteElement(i) {
-    	if ()
-        let conf = confirm('Вы уверены?');
-        if (conf == true) {
-        	alert('Успешно удалено');
-            f.remove();
-            i.remove();
-            document.querySelector('.popup-address').style.display='none';
-        } else {
-        	alert('Отменено');
-            i.remove();
-            document.querySelector('.popup-address').style.display='none';
-        };
+    	if (f.classList.contains('candelete')) {
+	        let conf = confirm('Вы уверены?');
+	        if (conf == true) {
+	        	alert('Успешно удалено');
+	            f.remove();
+	            i.remove();
+	            document.querySelector('.popup-address').style.display='none';
+	        } else {
+	        	alert('Отменено');
+	            i.remove();
+	            document.querySelector('.popup-address').style.display='none';
+	        };
+	} else {
+		alert('Невозможно удалить');
+	};
     };
 </script>
 </html>
