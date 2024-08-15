@@ -280,7 +280,7 @@
             </div>
             <div class="edit-confirm edittt">
             	<button class="btn" onclick="saveAddressEditing()">Сохранить</button>
-                <button class="btn red" onclick="closeWindow(this)">Отменить</button>
+                <button class="btn red" onclick="closeWindowAddress(this)">Отменить</button>
             </div>
 		</div>
     </div>
@@ -527,6 +527,11 @@
     	f = e;
         if (e.classList.contains('candelete')) {
         	document.querySelectorAll('.edit-confirm')[0].innerHTML+=`<button class="btn delete" onclick="deleteElement(this)">Удалить</button>`;
+        } else {
+        	let bttn = document.querySelector('.delete');
+            if (bttn !== null) {
+            	bttn.remove();
+            }
         };
         document.querySelector('.popup-address').style.display='grid';
     	type_address = e.children[0];
@@ -564,6 +569,11 @@
     	e.parentElement.parentElement.parentElement.style.display = 'none';
     }
     
+    function closeWindowAddress(e) {
+    	e.parentElement.parentElement.parentElement.style.display = 'none';
+    	document.querySelector('.delete').remove();
+    }
+    
     function changePassport(e) {
     	let promo = prompt("Серия и номера паспорта?");
         if (promo !== '' && promo!== null) {
@@ -575,7 +585,8 @@
     }
     
     function deleteElement(i) {
-    	let conf = confirm('Вы уверены?');
+    	if ()
+        let conf = confirm('Вы уверены?');
         if (conf == true) {
         	alert('Успешно удалено');
             f.remove();
