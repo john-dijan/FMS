@@ -529,7 +529,7 @@
         	document.querySelectorAll('.edit-confirm')[0].innerHTML+=`<button class="btn delete" onclick="deleteElement(this)">Удалить</button>`;
         } else {
         	let bttn = document.querySelector('.delete');
-            if (bttn !== null) {
+            if (bttn) {
             	bttn.remove();
             }
         };
@@ -571,7 +571,10 @@
     
     function closeWindowAddress(e) {
     	e.parentElement.parentElement.parentElement.style.display = 'none';
-    	document.querySelector('.delete').remove();
+    	let bttn = document.querySelector('.delete');
+        if (bttn) {
+			bttn.remove();
+		}
     }
     
     function changePassport(e) {
