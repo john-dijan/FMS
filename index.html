@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ФМС регистрации</title>
+    <title>Document</title>
     <style>
         * {
             margin: 0;
@@ -14,8 +14,8 @@
         
         .wrapper {
             height: 100vh;
-            display: grid;
-            place-items: center;
+            display: flex;
+            justify-content: center;
         }
         
         .main {
@@ -205,6 +205,28 @@
             transform: scale(.98);
         }
         
+        .edittt {
+           display: flex;
+	   justify-content: space-evenly;
+    	   width: 100%;
+        }
+        
+        .edittt .btn {
+        	margin-right: 5px;
+        }
+        
+        .edittt .btn {
+        	order: 1;
+        }
+        
+        .edittt .red {
+        	order: 3;
+        }
+        
+        .edittt .delete {
+        	background: dodgerblue;
+            order: 2;
+        }
     </style>
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -256,7 +278,7 @@
                 	<input type="text" id="for-createdby" placeholder="Создан в подсистеме"/>
             	</div>
             </div>
-            <div class="edit-confirm">
+            <div class="edit-confirm edittt">
             	<button class="btn" onclick="saveAddressEditing()">Сохранить</button>
                 <button class="btn red" onclick="closeWindow(this)">Отменить</button>
             </div>
@@ -382,7 +404,7 @@
                       </thead>
                     <tbody id="ota">
                     	<tr data-row="1" ondblclick="editAddress(this)">
-                        	<td id="type-address">Адрес места пребивания</td>
+                            <td id="type-address">Адрес места пребивания</td>
                             <td id="since">06.05.2024</td>
                             <td id="till">03.08.2024</td>
                             <td id="address" style="color: rgb(0, 176, 240);font-weight: bold;">г. Москва, ул. Гжатская, Дом 5. Корпус 4, Квартира 185</td>
@@ -476,7 +498,7 @@
     let z = 2;
     function createNewTd() {
     	let ota = document.getElementById('ota');
-        let tr = `<tr ondblclick="editAddress(this)" data-row="${z}">
+        let tr = `<tr class="candelete" ondblclick="editAddress(this)" data-row="${z}" class="delete">
         			${document.querySelector('tr[data-row="1"]').innerHTML}
         </tr>`
         ota.innerHTML+=tr;
@@ -500,8 +522,13 @@
 	let for_role = document.getElementById('for-role');
 	let for_createdby = document.getElementById('for-createdby');
     
+    let f;
     function editAddress(e) {
-    	document.querySelector('.popup-address').style.display='grid';
+    	f = e;
+        if (e.classList.contains('candelete')) {
+        	document.querySelectorAll('.edit-confirm')[0].innerHTML+=`<button class="btn delete" onclick="deleteElement(this)">Удалить</button>`;
+        };
+        document.querySelector('.popup-address').style.display='grid';
     	type_address = e.children[0];
         since = e.children[1];
         till = e.children[2];
@@ -546,5 +573,19 @@
         	alert('Дествия отменено');
         }
     }
+    
+    function deleteElement(i) {
+    	let conf = confirm('Вы уверены?');
+        if (conf == true) {
+        	alert('Успешно удалено');
+            f.remove();
+            i.remove();
+            document.querySelector('.popup-address').style.display='none';
+        } else {
+        	alert('Отменено');
+            i.remove();
+            document.querySelector('.popup-address').style.display='none';
+        };
+    };
 </script>
 </html>
